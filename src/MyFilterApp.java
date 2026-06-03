@@ -73,14 +73,42 @@ public class MyFilterApp extends JFrame implements ActionListener, ChangeListene
 
             JFileChooser chooser = new JFileChooser();
 
-            if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            int result = chooser.showOpenDialog(this);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
 
                 try {
-                    originalImage = ImageIO.read(chooser.getSelectedFile());
+
+                    File file = chooser.getSelectedFile();
+                    System.out.println(file.getAbsolutePath());
+                    System.out.println("選擇檔案：" + file.getAbsolutePath());
+
+                    originalImage = ImageIO.read(file);
+
+                    if (originalImage == null) {
+
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "無法讀取此圖片格式！\n請改用 JPG 或 PNG。");
+
+                        return;
+                    }
+
                     currentImage = copyImage(originalImage);
+
                     showImage(currentImage);
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "圖片載入成功！");
+
                 } catch (Exception ex) {
+
                     ex.printStackTrace();
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "圖片載入失敗！\n" + ex.getMessage());
                 }
             }
         }
@@ -104,12 +132,29 @@ public class MyFilterApp extends JFrame implements ActionListener, ChangeListene
 
             JFileChooser chooser = new JFileChooser();
 
-            if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            if (chooser.showSaveDialog(this)
+                    == JFileChooser.APPROVE_OPTION) {
 
                 try {
-                    ImageIO.write(currentImage, "jpg", chooser.getSelectedFile());
+
+                    File file = chooser.getSelectedFile();
+
+                    ImageIO.write(
+                            currentImage,
+                            "png",
+                            file);
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "圖片儲存成功！");
+
                 } catch (Exception ex) {
+
                     ex.printStackTrace();
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "圖片儲存失敗！");
                 }
             }
         }
