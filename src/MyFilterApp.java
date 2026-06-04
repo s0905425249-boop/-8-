@@ -1,3 +1,5 @@
+
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -10,8 +12,9 @@ import javax.swing.event.ChangeListener;
 public class MyFilterApp extends JFrame implements ActionListener, ChangeListener {
 
     JLabel imageLabel;
-    JButton openBtn, grayBtn, blurBtn, edgeBtn, saveBtn;
+    JButton openBtn, grayBtn, blurBtn, edgeBtn, saveBtn, resetBtn;
     JSlider brightSlider, contrastSlider;
+    JLabel brightValue, contrastValue;
 
     BufferedImage originalImage;
     BufferedImage currentImage;
@@ -33,18 +36,21 @@ public class MyFilterApp extends JFrame implements ActionListener, ChangeListene
         blurBtn = new JButton("模糊");
         edgeBtn = new JButton("邊緣");
         saveBtn = new JButton("儲存");
+        resetBtn = new JButton("復原");
 
         openBtn.addActionListener(this);
         grayBtn.addActionListener(this);
         blurBtn.addActionListener(this);
         edgeBtn.addActionListener(this);
         saveBtn.addActionListener(this);
+        resetBtn.addActionListener(this);
 
         topPanel.add(openBtn);
         topPanel.add(grayBtn);
         topPanel.add(blurBtn);
         topPanel.add(edgeBtn);
         topPanel.add(saveBtn);
+        topPanel.add(resetBtn);
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -52,15 +58,20 @@ public class MyFilterApp extends JFrame implements ActionListener, ChangeListene
 
         brightSlider = new JSlider(-100, 100, 0);
         contrastSlider = new JSlider(50, 150, 100);
-
+        
+        brightValue = new JLabel("0");
+        contrastValue = new JLabel("100%");
+        
         brightSlider.addChangeListener(this);
         contrastSlider.addChangeListener(this);
 
         bottomPanel.add(new JLabel("亮度"));
         bottomPanel.add(brightSlider);
+        bottomPanel.add(brightValue);
 
         bottomPanel.add(new JLabel("對比"));
         bottomPanel.add(contrastSlider);
+        bottomPanel.add(contrastValue);
 
         add(bottomPanel, BorderLayout.SOUTH);
 
@@ -68,7 +79,21 @@ public class MyFilterApp extends JFrame implements ActionListener, ChangeListene
     }
 
     public void actionPerformed(ActionEvent e) {
+    	
+    	if (e.getSource() == resetBtn) {
 
+    	    if (originalImage == null)
+    	        return;
+
+    	    currentImage = copyImage(originalImage);
+
+    	    brightSlider.setValue(0);
+    	    contrastSlider.setValue(100);
+
+    	    showImage(currentImage);
+
+    	    return;
+    	}
         if (e.getSource() == openBtn) {
 
             JFileChooser chooser = new JFileChooser();
@@ -164,6 +189,13 @@ public class MyFilterApp extends JFrame implements ActionListener, ChangeListene
 
         if (originalImage == null)
             return;
+
+        brightValue.setText(
+                String.valueOf(
+                        brightSlider.getValue()));
+
+        contrastValue.setText(
+                contrastSlider.getValue() + "%");
 
         adjustImage();
     }
