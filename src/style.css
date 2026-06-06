@@ -1,1 +1,235 @@
+body{
+
+    margin:0;
+
+    font-family:"Microsoft JhengHei";
+
+    background:#eaf3ff;
+
+}
+
+.container{
+
+    display:flex;
+
+    height:100vh;
+
+}
+
+.left{
+
+    width:20%;
+
+    background:white;
+
+    padding:15px;
+
+    overflow:auto;
+
+    box-shadow:2px 0 10px rgba(0,0,0,0.1);
+
+}
+
+.center{
+
+    width:60%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #e8f4ff,
+        #d5e8ff
+    );
+
+}
+
+.right{
+
+    width:20%;
+
+    background:white;
+
+    padding:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    box-shadow:-2px 0 10px rgba(0,0,0,0.1);
+
+}
+
+canvas{
+
+    max-width:95%;
+
+    max-height:95%;
+
+    background:white;
+
+    border-radius:10px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.2);
+
+}
+
+
+button{
+
+    width:100%;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#4a90e2;
+
+    color:white;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+button:hover{
+
+    background:#357abd;
+
+    transform:translateY(-2px);
+
+}
+
+input[type="range"]{
+
+    width:100%;
+
+    accent-color:#4a90e2;
+
+    cursor:pointer;
+
+}
+
+h3{
+
+    color:#2c3e50;
+
+    border-bottom:2px solid #4a90e2;
+
+    padding-bottom:5px;
+
+}
+
+#imageInfo{
+
+height:100px;
+
+overflow:auto;
+
+background:white;
+
+padding:10px;
+
+border:1px solid gray;
+
+border-radius:8px;
+
+margin-bottom:10px;
+
+}
+
+.left h3{
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+#imageInfo,
+#fileList,
+#history,
+#explain{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    box-shadow:
+    0 2px 8px rgba(0,0,0,.1);
+
+    margin-bottom:15px;
+}
+
+
+.btn-normal{
+
+background:#4a90e2;
+
+}
+
+
+.btn-save{
+
+background:#27ae60;
+
+}
+
+.btn-effect{
+
+background:#8e44ad;
+
+}
+
+#history{
+
+height:200px;
+
+overflow-y:auto;
+
+overflow-x:hidden;
+
+background:white;
+
+padding:10px;
+
+border:1px solid #d0d0d0;
+
+border-radius:8px;
+
+font-size:13px;
+
+line-height:1.8;
+
+}
+
+.control-card{
+
+background:white;
+
+padding:10px;
+
+border-radius:10px;
+
+box-shadow:
+0 2px 6px rgba(0,0,0,.1);
+
+}
+
+
+
+
+
+
 
