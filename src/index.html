@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+
+<meta charset="UTF-8">
+<title>My Filter App</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left">
+
+        <h2 id="currentImageName">未載入圖片</h2>
+
+        <h3>圖片資訊</h3>
+        
+        <div id="imageInfo"></div>
+        
+        <h3>匯入檔案</h3>
+
+        <div id="fileList"></div>
+
+        <h3>操作紀錄</h3>
+
+        <div id="history"></div>
+
+        <h3>效果解釋</h3>
+
+        <div id="explain"></div>
+
+    </div>
+
+    <div class="center">
+
+        <canvas id="canvas"></canvas>
+
+    </div>
+
+    <div class="right">
+
+        <input type="file" id="fileInput" multiple>
+
+
+        <button onclick="loadFiles()">匯入圖片</button>
+
+        <button onclick="grayImage()">灰階</button>
+
+        <button onclick="blurImage()">模糊</button>
+        <label>模糊強度：<span id="blurValue">1</span></label>
+        <input type="range"id="blurLevel"min="1"max="5"value="1"oninput="document.getElementById('blurValue').innerText=this.value"> 
+
+        <button onclick="edgeImage()">邊緣化</button>
+        <label>邊緣強度：<span id="edgeValue">80</span></label>
+        <input type="range"id="edgeLevel"min="10"max="255"value="80"oninput="document.getElementById('edgeValue').innerText=this.value">
+
+        <button onclick="negativeImage()">負片</button>
+
+        <button onclick="saveImage()">儲存</button>
+        <h4>調整大小</h4>
+        <label>寬度</label>
+        <input type="number" id="newWidth">
+
+        <label>高度</label>
+        <input type="number" id="newHeight">
+
+        <button onclick="resizeImage()">調整大小</button>
+
+        <button onclick="resetImage()">完全復原</button>
+        
+        <button onclick="undo()">上一步</button>
+
+        <button onclick="redo()">下一步</button>
+
+        <label>亮度：<span id="brightnessValue">0</span>%</label>
+        <input type="range"id="brightness"min="-100"max="100"value="0"oninput="document.getElementById('brightnessValue').innerText=this.value;changeBrightness();">
+        <label>對比度：<span id="contrastValue">0</span>%</label>
+        <input type="range"id="contrast"min="-100"max="100"value="0"oninput="document.getElementById('contrastValue').innerText=this.value;changeContrast();">
+
+    
+       <button onclick="bilateralFilter()">保邊去躁</button>
+        <label>保邊強度：<span id="bilateralValue">5</span></label>
+
+        <input type="range"id="bilateralLevel"min="1"max="20"value="5"oninput="document.getElementById('bilateralValue').innerText=this.value"> 
+
+
+        
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
